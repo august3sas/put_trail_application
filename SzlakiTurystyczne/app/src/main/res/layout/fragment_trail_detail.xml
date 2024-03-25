@@ -3,13 +3,24 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical">
+
     <TextView
-        android:layout_height="wrap_content"
+        android:id="@+id/textName"
         android:layout_width="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/textName" />
+        android:layout_height="wrap_content"
+        android:text="@string/trail_name"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
     <TextView
-        android:layout_height="wrap_content"
+        android:id="@+id/textLength"
         android:layout_width="wrap_content"
-        android:id="@+id/textLength" />
+        android:layout_height="wrap_content"
+        android:text="@string/trail_length" />
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="558dp"
+        android:layout_weight="1"
+        android:visibility="gone"></ListView>
 </LinearLayout>

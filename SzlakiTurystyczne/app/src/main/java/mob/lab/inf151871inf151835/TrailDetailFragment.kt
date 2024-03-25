@@ -22,8 +22,12 @@ class TrailDetailFragment : ListFragment() {
             val name = view.findViewById(R.id.textName) as TextView
             val trail = Trail.trails[trailId.toInt()]
             name.text = trail.getName()
+            println(name.text)
+            println("26")
             val length = view.findViewById(R.id.textLength) as TextView
             length.text = trail.getLength().toString()
+            println(length.text)
+            println("30")
         }
     }
     public fun setTrail(trailId: Long){

@@ -20,11 +20,14 @@ class TrailListFragment : ListFragment() {
     private var listener: Listener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
+        println("traillist23")
         val names = Array(Trail.trails.size) { i ->
             Trail.trails[i].getName()
         }
-        val adapter = ArrayAdapter(inflater.context, R.layout.simple_list_item_1, names)
-        var listAdapter = adapter
+        println("traillist27")
+        listAdapter = ArrayAdapter(inflater.context, R.layout.simple_list_item_1, names)
+        setListAdapter(listAdapter)
+        println("traillist31")
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
@@ -40,6 +43,9 @@ class TrailListFragment : ListFragment() {
 
     override fun onListItemClick(listView: ListView, itemView: View, position: Int, id: Long){
         //super.onListItemClick(listView, itemView, position, id)
-        listener?.itemClicked(id)
+        //listener?.itemClicked(id)
+        if (listener != null){
+            listener!!.itemClicked(id)
+        }
     }
 }
