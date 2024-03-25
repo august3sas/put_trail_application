@@ -19,8 +19,16 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
     }
 
     override fun itemClicked(id: Long) {
-        intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, id.toInt())
-        startActivity(intent)
+        val trailDetailsFragment = supportFragmentManager.findFragmentById(R.id.detail_frag) as? TrailDetailFragment
+
+        if (trailDetailsFragment != null) {
+            // Jeśli fragment jest już wyświetlony, przekaż mu identyfikator szlaku
+            trailDetailsFragment.setTrail(id.toLong())
+        } else {
+            // Jeśli fragment nie jest wyświetlony, utwórz nową intencję z dodatkami i uruchom aktywność
+            intent = Intent(this, DetailActivity::class.java)
+            intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, id.toInt())
+            startActivity(intent)
+        }
     }
 }

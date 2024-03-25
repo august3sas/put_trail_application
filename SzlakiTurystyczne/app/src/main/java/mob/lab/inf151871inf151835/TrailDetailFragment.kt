@@ -17,21 +17,32 @@ class TrailDetailFragment : ListFragment() {
 
     override fun onStart(){
         super.onStart()
-        val view = view
-        if(view != null){
-            val name = view.findViewById(R.id.textName) as TextView
-            val trail = Trail.trails[trailId.toInt()]
-            name.text = trail.getName()
-            println(name.text)
-            println("26")
-            val length = view.findViewById(R.id.textLength) as TextView
-            length.text = trail.getLength().toString()
-            println(length.text)
-            println("30")
-        }
+        updateTrailInfo(trailId)
     }
     public fun setTrail(trailId: Long){
         this.trailId = trailId ?: 0
+        updateTrailInfo(trailId)
+    }
+    fun updateTrailInfo(trailId: Long){
+        val view = view
+        if(view != null){
+            val trail = Trail.trails[trailId.toInt()]
+
+            val name = view.findViewById(R.id.textName) as TextView
+            name.text = trail.getName()
+            println(name.text)
+            println("26")
+
+            val length = view.findViewById(R.id.textLength) as TextView
+            length.text = "Długość Szlaku: "+trail.getLength().toString()
+            println(length.text)
+            println("30")
+
+            val time = view.findViewById(R.id.textTime) as TextView
+            time.text = "Czas trwania szlaku: "+TrailHelpers.timeToString(trail.getTime())
+            println(time.text)
+            println("37")
+        }
     }
 
 }
