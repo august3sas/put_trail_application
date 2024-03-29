@@ -4,6 +4,10 @@
     <string name="trail_name">Nazwa Szlaku</string>
     <string name="trail_length">Długość Szlaku</string>
     <string name="trail_time">Czas Trwania Szlaku</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="remember">Zapamiętaj</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

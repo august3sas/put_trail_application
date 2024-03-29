@@ -2,6 +2,8 @@ package mob.lab.inf151871inf151835
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.fragment.app.FragmentTransaction
 
 class DetailActivity : AppCompatActivity() {
     companion object {
@@ -13,6 +15,8 @@ class DetailActivity : AppCompatActivity() {
         val frag = supportFragmentManager.findFragmentById(R.id.detail_frag) as TrailDetailFragment
         val trailId = intent.getIntExtra(EXTRA_TRAIL_ID, 0)
         frag.setTrail(trailId.toLong())
+
+
     }
 
 

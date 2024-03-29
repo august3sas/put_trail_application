@@ -1,6 +1,7 @@
 package mob.lab.inf151871inf151835
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +13,19 @@ class TrailDetailFragment : ListFragment() {
     private var trailId: Long = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
-       return inflater.inflate(R.layout.fragment_trail_detail, container, false)
+        val stoperFragment = StoperFragment().apply{
+            arguments = Bundle().apply{
+                putInt("trailId", trailId.toInt())
+            }
+        }
+        Log.d("TrailDetailFragment", "$trailId")
+        return inflater.inflate(R.layout.fragment_trail_detail, container, false)
     }
 
     override fun onStart(){
         super.onStart()
+
+        Log.d("StoperFragment", "Trail ID passed: $trailId")
         updateTrailInfo(trailId)
     }
     public fun setTrail(trailId: Long){
@@ -42,6 +51,9 @@ class TrailDetailFragment : ListFragment() {
             time.text = "Czas trwania szlaku: "+TrailHelpers.timeToString(trail.getTime())
             println(time.text)
             println("37")
+
+
+
         }
     }
 
