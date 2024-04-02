@@ -26,7 +26,7 @@ class StoperFragment : Fragment(), View.OnClickListener{
             seconds = savedInstanceState.getInt("seconds")
             running = savedInstanceState.getBoolean("running")
             wasRunning = savedInstanceState.getBoolean("wasRunning")
-            }
+        }
         trailId = arguments?.getInt("trailId", 0) ?: 0
         Log.d("StoperFragment", "Retrieved trailId: $trailId")
 
@@ -53,7 +53,7 @@ class StoperFragment : Fragment(), View.OnClickListener{
         super.onPause()
         wasRunning = running
         running = false
-        trailId = arguments?.getInt("trailId",0) ?: 0
+        //trailId = arguments?.getInt("trailId",0) ?: 0
         Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         with(prefs.edit()) {
@@ -68,8 +68,8 @@ class StoperFragment : Fragment(), View.OnClickListener{
         if(wasRunning){
             running = true
         }
-        trailId = arguments?.getInt("trailId",0) ?: 0
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
+        //trailId = arguments?.getInt("trailId",0) ?: 0
+        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         seconds = prefs.getInt("Seconds_$trailId", 0)
         running = prefs.getBoolean("Running_$trailId", false)
@@ -83,27 +83,28 @@ class StoperFragment : Fragment(), View.OnClickListener{
     }
 
     private fun onClickStart(){
-        trailId = arguments?.getInt("trailId",0) ?: 0
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
+        //trailId = arguments?.getInt("trailId",0) ?: 0
+        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = true
     }
 
     private fun onClickStop(){
-        trailId = arguments?.getInt("trailId",0) ?: 0
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
+        //trailId = arguments?.getInt("trailId",0) ?: 0
+        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = false
     }
 
     private fun onClickReset(){
-        trailId = arguments?.getInt("trailId",0) ?: 0
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
+        //trailId = arguments?.getInt("trailId",0) ?: 0
+        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = false
         seconds = 0
     }
     private fun onClickRemember(){
-        trailId = arguments?.getInt("trailId",0) ?: 0
+        /*trailId = arguments?.getInt("trailId",0) ?: 0
         Log.d("StoperFragment", "Trail ID retrieved: $trailId")
-        println(trailId)
+        println(trailId)*/
+        println("Godzin: ${seconds/3600} Minut: ${(seconds%3600)/60} Sekund: ${seconds%60}")
         //trail.addTime("Czas: $seconds")
 
     }
