@@ -3,8 +3,14 @@ package mob.lab.inf151871inf151835
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import android.view.MenuItem
+import androidx.core.view.MenuItemCompat
+import androidx.appcompat.widget.ShareActionProvider
+
+
 
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +18,6 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
-        println("xd")
     }
 
     fun onShowDetail(view: View){
@@ -33,4 +38,32 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
             startActivity(intent)
         }
     }
+    fun setShareActionIntent(text: String, shareActionProvider: ShareActionProvider){
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setType("text/plain")
+        intent.putExtra(Intent.EXTRA_TEXT, text)
+        //val menuItem: MenuItem = findViewById(R.id.action_share)
+        //val shareActionProvider: ShareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
+        shareActionProvider.setShareIntent(intent)
+    }
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main,menu)
+        val menuItem: MenuItem? = menu?.findItem(R.id.action_share)
+        val shareActionProvider: ShareActionProvider = MenuItemCompat.getActionProvider(menuItem!!) as ShareActionProvider
+        setShareActionIntent("words come easy", shareActionProvider)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.getItemId()) {
+            R.id.action_action -> {
+                // Code executed when the action_create_order item is clicked
+                val intent = Intent(this, ActionActivity::class.java)
+                startActivity(intent)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
 }
