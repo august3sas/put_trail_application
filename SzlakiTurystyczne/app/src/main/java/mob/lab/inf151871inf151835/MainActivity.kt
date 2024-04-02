@@ -9,15 +9,20 @@ import androidx.appcompat.widget.Toolbar
 import android.view.MenuItem
 import androidx.core.view.MenuItemCompat
 import androidx.appcompat.widget.ShareActionProvider
-
+import androidx.viewpager.widget.ViewPager
 
 
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+
+        val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+        val pager: ViewPager = findViewById(R.id.pager)
+        pager.setAdapter(pagerAdapter)
     }
 
     fun onShowDetail(view: View){
