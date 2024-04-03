@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         tabLayout.setupWithViewPager(pager)
 
+
+
     }
 
     fun onShowDetail(view: View){

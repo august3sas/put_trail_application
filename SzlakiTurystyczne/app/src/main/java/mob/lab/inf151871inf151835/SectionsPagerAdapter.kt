@@ -12,7 +12,7 @@ class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> TopFragment()
+            0 -> TrailListFragment()
             1 -> Tab1Fragment()
             2 -> Tab2Fragment()
             else -> throw IllegalArgumentException("Invalid position: $position")
