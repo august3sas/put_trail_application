@@ -10,6 +10,7 @@ import android.view.MenuItem
 import androidx.core.view.MenuItemCompat
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 
 
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
@@ -23,6 +24,10 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
         val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         val pager: ViewPager = findViewById(R.id.pager)
         pager.setAdapter(pagerAdapter)
+
+        val tabLayout: TabLayout = findViewById(R.id.tabs)
+        tabLayout.setupWithViewPager(pager)
+
     }
 
     fun onShowDetail(view: View){

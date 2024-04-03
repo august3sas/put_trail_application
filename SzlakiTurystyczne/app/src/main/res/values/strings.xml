@@ -14,6 +14,10 @@
     <string name="action_share">Share</string>
     <string name="title_top">Fragment główny</string>
 
+    <string name="home_tab">Start</string>
+    <string name="kat1_tab">Kategoria 1</string>
+    <string name="kat2_tab">Kategoria 2</string>
+
     <string-array name="kategoria1">
         <item>Pozycja 1 Kat. 1</item>
         <item>Pozycja 2 Kat. 1</item>

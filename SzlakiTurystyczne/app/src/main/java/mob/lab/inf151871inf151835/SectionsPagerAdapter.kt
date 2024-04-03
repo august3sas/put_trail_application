@@ -18,4 +18,13 @@ class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }
+
+    override fun getPageTitle(position: Int): CharSequence? {
+        return when (position) {
+            0 -> "Start"
+            1 -> "Kategoria 1"
+            2 -> "Kategoria 2"
+            else -> null
+        }
+    }
 }
