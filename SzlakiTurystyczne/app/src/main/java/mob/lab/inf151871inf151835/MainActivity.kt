@@ -11,7 +11,8 @@ import androidx.core.view.MenuItemCompat
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
-
+import com.google.android.material.snackbar.Snackbar;
+import android.widget.Toast;
 
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +28,6 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         tabLayout.setupWithViewPager(pager)
-
-
-
     }
 
     fun onShowDetail(view: View){
@@ -76,6 +74,16 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    fun onClickDone(view: View){
+        val text: CharSequence = "Hektor miał Trojan radę nad Skamandru rzeką."
+        val duration = Toast.LENGTH_SHORT
+        val snackbar = Snackbar.make(findViewById(R.id.coordinator), text, duration)
+        snackbar.setAction("Cofnij") {
+            Toast.makeText(this@MainActivity, "Cofnięto!", Toast.LENGTH_SHORT).show()
+        }
+        snackbar.show()
     }
 
 }
