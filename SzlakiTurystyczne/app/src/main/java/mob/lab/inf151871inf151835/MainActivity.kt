@@ -13,13 +13,26 @@ import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.snackbar.Snackbar;
 import android.widget.Toast;
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
+class MainActivity : AppCompatActivity(), TrailListFragment.Listener, NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
+        val toggle = ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer)
+        drawer.addDrawerListener(toggle)
+        toggle.syncState()
+
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+
         setSupportActionBar(toolbar)
 
         val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
@@ -76,6 +89,41 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener {
         }
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        var fragment: Fragment? = null
+        var intent: Intent? = null
+        when (id) {
+            R.id.nav_import -> {
+                fragment = TopFragment()
+            }
+            R.id.nav_gallery -> {
+                fragment = TopFragment()
+            }
+            R.id.nav_slideshow -> {
+                fragment = TopFragment()
+            }
+            R.id.nav_tools -> {
+                fragment = TopFragment()
+            }
+        }
+        if (fragment != null) {
+            supportFragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit()
+        }else{
+            startActivity(intent)
+        }
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
+        drawer.closeDrawers()
+        return true
+    }
+    override fun onBackPressed(){
+        val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START)
+        }else{
+            super.onBackPressed()
+        }
+    }
     fun onClickDone(view: View){
         val text: CharSequence = "Hektor miał Trojan radę nad Skamandru rzeką."
         val duration = Toast.LENGTH_SHORT

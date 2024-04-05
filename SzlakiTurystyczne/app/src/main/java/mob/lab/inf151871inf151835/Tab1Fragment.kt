@@ -12,11 +12,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class Tab1Fragment : Fragment() {
+class Tab1Fragment(private val type: Int) : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val trailRecycler: RecyclerView = inflater.inflate(R.layout.fragment_tab1,container,false) as RecyclerView
-        val trailNames = Array(Trail.trails.size) { i -> Trail.trails[i].getName() }
-        val trailImages = Array(Trail.trails.size) { i -> Trail.trails[i].getImageResourceId() }
+
+
+        val filteredTrails = Trail.trails.filter { it.getType() == type || type == 0 }
+        val trailNames = Array(filteredTrails.size) { i -> filteredTrails[i].getName() }
+        val trailImages = Array(filteredTrails.size) { i -> filteredTrails[i].getImageResourceId() }
+
         val adapter = CaptionedImagesAdapter(trailNames, trailImages)
 
         val layoutManager = GridLayoutManager(activity, 2)
@@ -26,7 +30,7 @@ class Tab1Fragment : Fragment() {
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
                 val intent = Intent(activity, TrailDetailActivity::class.java)
-                intent.putExtra("trailId", position)
+                intent.putExtra("trailId", filteredTrails[position].getId())
                 activity?.startActivity(intent)
             }
         })

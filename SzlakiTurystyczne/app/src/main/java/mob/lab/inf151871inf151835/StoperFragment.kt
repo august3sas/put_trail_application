@@ -44,8 +44,7 @@ class StoperFragment : Fragment(), View.OnClickListener{
         stopButton.setOnClickListener(this)
         val resetButton = layout.findViewById(R.id.reset_button) as Button
         resetButton.setOnClickListener(this)
-        val rememberButton = layout.findViewById(R.id.remember_button) as Button
-        rememberButton.setOnClickListener(this)
+
         return layout
     }
 
@@ -100,20 +99,11 @@ class StoperFragment : Fragment(), View.OnClickListener{
         running = false
         seconds = 0
     }
-    private fun onClickRemember(){
-        /*trailId = arguments?.getInt("trailId",0) ?: 0
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
-        println(trailId)*/
-        println("Godzin: ${seconds/3600} Minut: ${(seconds%3600)/60} Sekund: ${seconds%60}")
-        //trail.addTime("Czas: $seconds")
-
-    }
     override fun onClick(v: View){
         when(v.id){
             R.id.start_button -> onClickStart()
             R.id.stop_button -> onClickStop()
             R.id.reset_button -> onClickReset()
-            R.id.remember_button -> onClickRemember()
         }
     }
     fun runStoper(view: View){

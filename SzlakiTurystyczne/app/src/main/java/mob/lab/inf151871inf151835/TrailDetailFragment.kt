@@ -18,14 +18,11 @@ class TrailDetailFragment : ListFragment() {
                 putInt("trailId", trailId.toInt())
             }
         }
-        Log.d("TrailDetailFragment", "$trailId")
         return inflater.inflate(R.layout.fragment_trail_detail, container, false)
     }
 
     override fun onStart(){
         super.onStart()
-
-        Log.d("StoperFragment", "Trail ID passed: $trailId")
         updateTrailInfo(trailId)
     }
     public fun setTrail(trailId: Long){
@@ -40,20 +37,14 @@ class TrailDetailFragment : ListFragment() {
             val name = view.findViewById(R.id.textName) as TextView
             name.text = trail.getName()
             println(name.text)
-            println("26")
 
             val length = view.findViewById(R.id.textLength) as TextView
             length.text = "Długość Szlaku: "+trail.getLength().toString()
             println(length.text)
-            println("30")
 
             val time = view.findViewById(R.id.textTime) as TextView
             time.text = "Czas trwania szlaku: "+TrailHelpers.timeToString(trail.getTime())
             println(time.text)
-            println("37")
-
-
-
         }
     }
 

@@ -12,18 +12,18 @@ class SectionsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         return when (position) {
-            0 -> TrailListFragment()
-            1 -> Tab1Fragment()
-            2 -> Tab2Fragment()
+            0 -> Tab1Fragment(0)
+            1 -> Tab1Fragment(1)
+            2 -> Tab1Fragment(2)
             else -> throw IllegalArgumentException("Invalid position: $position")
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Start"
-            1 -> "Kategoria 1"
-            2 -> "Kategoria 2"
+            0 -> "Wszystkie"
+            1 -> "Babia Góra"
+            2 -> "Polica"
             else -> null
         }
     }

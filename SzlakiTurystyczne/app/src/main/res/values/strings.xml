@@ -13,15 +13,24 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="action_share">Share</string>
     <string name="title_top">Fragment główny</string>
+    <string name="drawer_import">Import</string>
+    <string name="drawer_gallery">Galeria</string>
+    <string name="drawer_slideshow">Pokaz slajdów</string>
+    <string name="drawer_tools">Narzędzia</string>
 
-    <string name="home_tab">Start</string>
-    <string name="kat1_tab">Kategoria 1</string>
-    <string name="kat2_tab">Kategoria 2</string>
+    <string name="user_name">Jan Kowalski</string>
+    <string name="user_mail">jankowalski@gmail.com</string>
+
+    <string name="home_tab">Wszystko</string>
+    <string name="kat1_tab">Babia Góra</string>
+    <string name="kat2_tab">Polica</string>
 
     <string name="top_header">Nagłówek</string>
     <string name="top_image">Obrazek</string>
     <string name="top_text">Hektor miał Trojan radę nad Skamandru rzeką.</string>
 
+    <string name="open_drawer">Otwórz szufladę nawigacyjną</string>
+    <string name="close_drawer">Zamknij szufladę nawigacyjną</string>
 
     <string-array name="kategoria1">
         <item>Pozycja 1 Kat. 1</item>
