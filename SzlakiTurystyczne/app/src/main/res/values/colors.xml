@@ -11,4 +11,9 @@
     <color name="colorPrimary">#3F61B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="mountain">#606060</color>
+    <color name="snow_white">#DAD1CE</color>
+    <color name="blue_sky">#87CEEB</color>
+    <color name="sea">#00BFFF</color>
 </resources>
