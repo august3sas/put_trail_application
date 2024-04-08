@@ -12,8 +12,21 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="mountain">#606060</color>
-    <color name="snow_white">#DAD1CE</color>
+    <color name="winter_upper">#DAD1CE</color>
+    <color name="winter_lower">#606060</color>
+
+
+    <color name="spring_upper">#008000</color>
+    <color name="spring_lower">#8B4513</color>
+
+    <color name="summer_upper">#1dbf30</color>
+    <color name="summer_lower">#006400</color>
+
+    <color name="autumn_upper">#FFA500</color>
+    <color name="autumn_lower">#FF8C00</color>
+
+
+
     <color name="blue_sky">#87CEEB</color>
     <color name="sea">#00BFFF</color>
 </resources>

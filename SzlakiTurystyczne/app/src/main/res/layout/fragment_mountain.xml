@@ -14,7 +14,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:src="@drawable/mountain" />
+            android:src="@drawable/mountain_1" />
     </FrameLayout>
     <View
         android:layout_width="match_parent"

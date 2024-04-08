@@ -22,14 +22,16 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
+
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener, NavigationView.OnNavigationItemSelectedListener {
     private var keepSplash = true
     private val delay = 1200L
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
-        setupSplashScreen(splashScreen = splashScreen)
+
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
