@@ -3,6 +3,8 @@ package mob.lab.inf151871inf151835
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -14,13 +16,20 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.snackbar.Snackbar;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
 
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+
 class MainActivity : AppCompatActivity(), TrailListFragment.Listener, NavigationView.OnNavigationItemSelectedListener {
+    private var keepSplash = true
+    private val delay = 1200L
     override fun onCreate(savedInstanceState: Bundle?) {
+        val splashScreen = installSplashScreen()
+        setupSplashScreen(splashScreen = splashScreen)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -133,5 +142,11 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener, Navigation
         }
         snackbar.show()
     }
-
+    private fun setupSplashScreen(splashScreen: SplashScreen) {
+        // Replace this timer with your logic to load data on the splash screen.
+        splashScreen.setKeepOnScreenCondition { keepSplash }
+        Handler(Looper.getMainLooper()).postDelayed({
+            keepSplash = false
+        }, delay)
+    }
 }
