@@ -20,12 +20,10 @@ import androidx.core.splashscreen.SplashScreen
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 
-
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-
-class MainActivity : AppCompatActivity(), TrailListFragment.Listener, NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, Tab1Fragment.TrailItemClickListener {
     private var keepSplash = true
     private val delay = 1200L
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,23 +50,38 @@ class MainActivity : AppCompatActivity(), TrailListFragment.Listener, Navigation
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         tabLayout.setupWithViewPager(pager)
+
+        if(isTablet()){
+
+        }
+
     }
 
+    fun isTablet(): Boolean {
+        // Implement your logic to determine if the device is a tablet
+        val displayMetrics = resources.displayMetrics
+        val widthDp = displayMetrics.widthPixels / displayMetrics.density
+        return widthDp >= 600
+    }
     fun onShowDetail(view: View){
         intent = Intent(this, DetailActivity::class.java)
         startActivity(intent)
     }
 
-    override fun itemClicked(id: Long) {
-        val trailDetailsFragment = supportFragmentManager.findFragmentById(R.id.detail_frag) as? TrailDetailFragment
-
-        if (trailDetailsFragment != null) {
-            // Jeśli fragment jest już wyświetlony, przekaż mu identyfikator szlaku
-            trailDetailsFragment.setTrail(id.toLong())
+    override fun onTrailItemClick(trailId: Int) {
+        val fragmentContainer = supportFragmentManager.findFragmentById(R.id.right)
+        println("-----------------------------------trailId: "+trailId)
+        if (fragmentContainer != null) {
+            val fragment = TrailDetailFragment()
+            val ft = supportFragmentManager.beginTransaction()
+            fragment.setTrail(trailId.toLong())
+            ft.replace(R.id.right, fragment)
+            ft.addToBackStack(null)
+            ft.commit()
+            println("commited click")
         } else {
-            // Jeśli fragment nie jest wyświetlony, utwórz nową intencję z dodatkami i uruchom aktywność
             intent = Intent(this, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, id.toInt())
+            intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, trailId.toInt())
             startActivity(intent)
         }
     }

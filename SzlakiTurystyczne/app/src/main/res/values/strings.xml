@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SzlakiTurystyczne</string>
+    <string name="app_name">Szlaki Turystyczne</string>
     <string name="detail_button">Pokaż Szlak</string>
     <string name="trail_name">Nazwa Szlaku</string>
     <string name="trail_length">Długość Szlaku</string>
