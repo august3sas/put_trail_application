@@ -17,6 +17,9 @@ class Tab1Fragment(private val type: Int) : Fragment() {
         fun onTrailItemClick(trailId: Int)
     }
     private var trailItemClickListener: TrailItemClickListener? = null
+    fun setTrailItemClickListener(listener: Tab1Fragment.TrailItemClickListener) {
+        this.trailItemClickListener = listener
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val trailRecycler: RecyclerView = inflater.inflate(R.layout.fragment_tab1,container,false) as RecyclerView
 

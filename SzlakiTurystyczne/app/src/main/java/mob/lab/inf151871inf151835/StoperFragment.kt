@@ -123,5 +123,4 @@ class StoperFragment : Fragment(), View.OnClickListener{
             }
         })
     }
-
 }

@@ -8,5 +8,4 @@ class TrailHelpers {
             return "$hours h $minutes min"
         }
     }
-
 }

@@ -54,8 +54,4 @@ class Trail(
     override fun toString(): String{
         return this.name
     }
-
-
-
-
 }

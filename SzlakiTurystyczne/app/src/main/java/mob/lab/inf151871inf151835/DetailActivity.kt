@@ -15,9 +15,5 @@ class DetailActivity : AppCompatActivity() {
         val frag = supportFragmentManager.findFragmentById(R.id.detail_frag) as TrailDetailFragment
         val trailId = intent.getIntExtra(EXTRA_TRAIL_ID, 0)
         frag.setTrail(trailId.toLong())
-
-
     }
-
-
 }

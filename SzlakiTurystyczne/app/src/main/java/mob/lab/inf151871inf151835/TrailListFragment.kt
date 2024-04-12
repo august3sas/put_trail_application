@@ -45,4 +45,5 @@ class TrailListFragment : ListFragment() {
             listener!!.itemClicked(id)
         }
     }
+
 }

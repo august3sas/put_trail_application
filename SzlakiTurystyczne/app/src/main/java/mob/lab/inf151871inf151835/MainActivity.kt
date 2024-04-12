@@ -44,15 +44,21 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         setSupportActionBar(toolbar)
 
-        val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
+        val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager,this)
         val pager: ViewPager = findViewById(R.id.pager)
         pager.setAdapter(pagerAdapter)
 
         val tabLayout: TabLayout = findViewById(R.id.tabs)
         tabLayout.setupWithViewPager(pager)
 
-        if(isTablet()){
-
+        val fragmentContainer: View? = findViewById(R.id.right)
+        if(fragmentContainer != null){
+            val fragment = TrailDetailFragment()
+            val ft = supportFragmentManager.beginTransaction()
+            fragment.setTrail(0)
+            ft.replace(R.id.right, fragment)
+            ft.addToBackStack(null)
+            ft.commit()
         }
 
     }
@@ -69,7 +75,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onTrailItemClick(trailId: Int) {
-        val fragmentContainer = supportFragmentManager.findFragmentById(R.id.right)
+        //val fragmentContainer = supportFragmentManager.findFragmentById(R.id.right)
+        val fragmentContainer: View = findViewById(R.id.right)
         println("-----------------------------------trailId: "+trailId)
         if (fragmentContainer != null) {
             val fragment = TrailDetailFragment()
@@ -80,6 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ft.commit()
             println("commited click")
         } else {
+            println("no fragment container")
             intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, trailId.toInt())
             startActivity(intent)
