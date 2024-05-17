@@ -63,12 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-    fun isTablet(): Boolean {
-        // Implement your logic to determine if the device is a tablet
-        val displayMetrics = resources.displayMetrics
-        val widthDp = displayMetrics.widthPixels / displayMetrics.density
-        return widthDp >= 600
-    }
     fun onShowDetail(view: View){
         intent = Intent(this, DetailActivity::class.java)
         startActivity(intent)
@@ -76,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onTrailItemClick(trailId: Int) {
         //val fragmentContainer = supportFragmentManager.findFragmentById(R.id.right)
-        val fragmentContainer: View = findViewById(R.id.right)
+        val fragmentContainer: View? = findViewById(R.id.right)
         println("-----------------------------------trailId: "+trailId)
         if (fragmentContainer != null) {
             val fragment = TrailDetailFragment()
@@ -99,7 +93,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         intent.putExtra(Intent.EXTRA_TEXT, text)
         //val menuItem: MenuItem = findViewById(R.id.action_share)
         //val shareActionProvider: ShareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
-        shareActionProvider.setShareIntent(intent)
+        shareActionProvider?.setShareIntent(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main,menu)

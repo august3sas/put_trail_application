@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class Tab1Fragment(private val type: Int) : Fragment() {
+class Tab1Fragment(private val type: Int = 0) : Fragment() {
     interface TrailItemClickListener{
         fun onTrailItemClick(trailId: Int)
     }
