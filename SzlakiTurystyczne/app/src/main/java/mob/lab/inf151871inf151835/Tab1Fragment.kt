@@ -36,7 +36,8 @@ class Tab1Fragment(private val type: Int = 0) : Fragment() {
         trailRecycler.adapter = adapter
         adapter.setListener(object : CaptionedImagesAdapter.Listener {
             override fun onClick(position: Int) {
-                if(isTablet()){
+                val fragmentContainer: View? = activity?.findViewById(R.id.right)
+                if(fragmentContainer!=null){
                     println("tablet klikniecie---------------------------------------")
                     trailItemClickListener?.onTrailItemClick(filteredTrails[position].getId())
                     println("pozycja klikniecia: "+filteredTrails[position].getId())
