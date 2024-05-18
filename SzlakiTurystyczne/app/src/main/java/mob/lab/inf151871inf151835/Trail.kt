@@ -1,12 +1,12 @@
 package mob.lab.inf151871inf151835
 
 class Trail(
-    private var id: Int,
-    private var name: String,
-    private var length: Double,
-    private var time: Double,
-    private var type: Int,
-    private var resourceId: Int
+    private var id: Int, //identyfikator szlaku
+    private var name: String, //nazwa szlaku
+    private var length: Double, //długość szlaku
+    private var time: Double, //czas przejścia szlaku
+    private var type: Int, //typ szlaku (0 - wszystkie, 1 - BG, 2 - Polica)
+    private var resourceId: Int //identyfikator zasobu graficznego
     ) {
 
     companion object{

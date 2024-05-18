@@ -48,16 +48,14 @@ class SplashScreen : AppCompatActivity() {
                 }
 
                 Handler().postDelayed({
-                    // Check if not already moved to the next activity
                     if (!isFinishing) {
                         backgroundImage.visibility = View.VISIBLE
                         backgroundImage.startAnimation(slideAnimation)
                     }
-                }, 100) // 0.1 seconds delay
+                }, 100)
             }
 
             override fun onAnimationRepeat(animation: Animation?) {
-                // Not needed for this implementation.
             }
         })
 

@@ -17,7 +17,6 @@ class StoperFragment : Fragment(), View.OnClickListener{
     private var running = false
     private var wasRunning = false
     private var trailId = 0
-    //private var trail = Trail.trails[trailId]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +28,6 @@ class StoperFragment : Fragment(), View.OnClickListener{
         }
         trailId = arguments?.getInt("trailId", 0) ?: 0
         Log.d("StoperFragment", "Retrieved trailId: $trailId")
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -52,7 +50,6 @@ class StoperFragment : Fragment(), View.OnClickListener{
         super.onPause()
         wasRunning = running
         running = false
-        //trailId = arguments?.getInt("trailId",0) ?: 0
         Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         with(prefs.edit()) {
@@ -67,35 +64,23 @@ class StoperFragment : Fragment(), View.OnClickListener{
         if(wasRunning){
             running = true
         }
-        //trailId = arguments?.getInt("trailId",0) ?: 0
-        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         seconds = prefs.getInt("Seconds_$trailId", 0)
         running = prefs.getBoolean("Running_$trailId", false)
     }
-
     override fun onSaveInstanceState(savedInstanceState: Bundle){
         Log.d("StoperFragment", "onSavedInstanceState called")
         savedInstanceState.putInt("seconds", seconds)
         savedInstanceState.putBoolean("running", running)
         savedInstanceState.putBoolean("wasRunning", wasRunning)
     }
-
     private fun onClickStart(){
-        //trailId = arguments?.getInt("trailId",0) ?: 0
-        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = true
     }
-
     private fun onClickStop(){
-        //trailId = arguments?.getInt("trailId",0) ?: 0
-        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = false
     }
-
     private fun onClickReset(){
-        //trailId = arguments?.getInt("trailId",0) ?: 0
-        //Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         running = false
         seconds = 0
     }

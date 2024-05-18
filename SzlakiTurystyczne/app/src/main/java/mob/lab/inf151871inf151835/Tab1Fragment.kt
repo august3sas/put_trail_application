@@ -52,10 +52,4 @@ class Tab1Fragment(private val type: Int = 0) : Fragment() {
         })
         return trailRecycler
     }
-    fun isTablet(): Boolean {
-        // Implement your logic to determine if the device is a tablet
-        val displayMetrics = resources.displayMetrics
-        val widthDp = displayMetrics.widthPixels / displayMetrics.density
-        return widthDp >= 600
-    }
 }

@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
         val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
         val toggle = ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer)
         drawer.addDrawerListener(toggle)
@@ -42,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
-        setSupportActionBar(toolbar)
+
 
         val pagerAdapter: SectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager,this)
         val pager: ViewPager = findViewById(R.id.pager)
@@ -69,9 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onTrailItemClick(trailId: Int) {
-        //val fragmentContainer = supportFragmentManager.findFragmentById(R.id.right)
         val fragmentContainer: View? = findViewById(R.id.right)
-        println("-----------------------------------trailId: "+trailId)
         if (fragmentContainer != null) {
             val fragment = TrailDetailFragment()
             val ft = supportFragmentManager.beginTransaction()
@@ -79,9 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ft.replace(R.id.right, fragment)
             ft.addToBackStack(null)
             ft.commit()
-            println("commited click")
         } else {
-            println("no fragment container")
             intent = Intent(this, DetailActivity::class.java)
             intent.putExtra(DetailActivity.EXTRA_TRAIL_ID, trailId.toInt())
             startActivity(intent)
@@ -121,22 +118,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var intent: Intent? = null
         when (id) {
             R.id.nav_import -> {
-                fragment = TopFragment()
+                //import photos
             }
             R.id.nav_gallery -> {
-                fragment = TopFragment()
+                //open gallery
             }
             R.id.nav_slideshow -> {
-                fragment = TopFragment()
+                //open slideshow
             }
             R.id.nav_tools -> {
-                fragment = TopFragment()
+                //open tools
             }
         }
         if (fragment != null) {
             supportFragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit()
         }else{
-            startActivity(intent)
+            //do something else
+            //startActivity(intent)
         }
         val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
         drawer.closeDrawers()
@@ -151,7 +149,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
     fun onClickDone(view: View){
-        val text: CharSequence = "Hektor miał Trojan radę nad Skamandru rzeką."
+        val text: CharSequence = "Wykonano zdjęcie!"
         val duration = Toast.LENGTH_SHORT
         val snackbar = Snackbar.make(findViewById(R.id.coordinator), text, duration)
         snackbar.setAction("Cofnij") {

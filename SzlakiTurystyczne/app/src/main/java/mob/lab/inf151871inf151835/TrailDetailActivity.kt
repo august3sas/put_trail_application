@@ -23,8 +23,7 @@ class TrailDetailActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
 
-        val actionBar = supportActionBar
-        actionBar?.setDisplayHomeAsUpEnabled(true)
+
 
         val trailId = intent.getIntExtra("trailId", 0)
 
@@ -32,6 +31,10 @@ class TrailDetailActivity : AppCompatActivity() {
         trailId1 = trailId.toLong()
         toolbar.setTitle(trailName)
         setSupportActionBar(toolbar)
+
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setHomeButtonEnabled(true)
 
         val trailNameView: TextView = findViewById(R.id.trail_text)
         trailNameView.text = trailName
