@@ -17,7 +17,8 @@ class StoperFragment : Fragment(), View.OnClickListener{
     private var running = false
     private var wasRunning = false
     private var trailId = 0
-
+    private val handler = Handler()
+    private var runnable: Runnable? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("StoperFragment", "onCreate called")
@@ -25,6 +26,11 @@ class StoperFragment : Fragment(), View.OnClickListener{
             seconds = savedInstanceState.getInt("seconds")
             running = savedInstanceState.getBoolean("running")
             wasRunning = savedInstanceState.getBoolean("wasRunning")
+            Log.d("Retrieved savedInstanceState","Running? $running was Running? $wasRunning")
+            if(wasRunning || running){
+                running = true
+
+            }
         }
         trailId = arguments?.getInt("trailId", 0) ?: 0
         Log.d("StoperFragment", "Retrieved trailId: $trailId")
@@ -35,6 +41,7 @@ class StoperFragment : Fragment(), View.OnClickListener{
 
 
         val layout = inflater.inflate(R.layout.fragment_stoper, container, false)
+        Log.d("StoperFragment", "Is running? $running")
         runStoper(layout)
         val startButton = layout.findViewById(R.id.start_button) as Button
         startButton.setOnClickListener(this)
@@ -67,9 +74,14 @@ class StoperFragment : Fragment(), View.OnClickListener{
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         seconds = prefs.getInt("Seconds_$trailId", 0)
         running = prefs.getBoolean("Running_$trailId", false)
+        view.let{runStoper(it!!)}
     }
     override fun onSaveInstanceState(savedInstanceState: Bundle){
         Log.d("StoperFragment", "onSavedInstanceState called")
+        Log.d("StoperFragment", "Running? $running")
+        Log.d("StoperFragment", "Was Running? $wasRunning")
+        super.onSaveInstanceState(savedInstanceState)
+        running = wasRunning
         savedInstanceState.putInt("seconds", seconds)
         savedInstanceState.putBoolean("running", running)
         savedInstanceState.putBoolean("wasRunning", wasRunning)
@@ -79,6 +91,7 @@ class StoperFragment : Fragment(), View.OnClickListener{
     }
     private fun onClickStop(){
         running = false
+        wasRunning = false
     }
     private fun onClickReset(){
         running = false
@@ -93,19 +106,22 @@ class StoperFragment : Fragment(), View.OnClickListener{
     }
     fun runStoper(view: View){
         val timeView = view.findViewById(R.id.time_view) as TextView
-        val handler = Handler()
-        handler.post(object : Runnable{
-            override fun run(){
-                val hours = seconds / 3600
-                val minutes = (seconds % 3600) / 60
-                val secs = seconds % 60
-                val time = String.format("%d:%02d:%02d", hours, minutes, secs)
-                timeView.setText(time)
-                if(running){
-                    seconds++
+        if (runnable == null){
+            runnable = object : Runnable{
+                override fun run(){
+                    val hours = seconds / 3600
+                    val minutes = (seconds % 3600) / 60
+                    val secs = seconds % 60
+                    val time = String.format("%d:%02d:%02d", hours, minutes, secs)
+                    timeView.setText(time)
+                    if(running){
+                        seconds++
+                    }
+                    handler.postDelayed(this, 1000)
                 }
-                handler.postDelayed(this, 1000)
             }
-        })
+        }
+        handler.removeCallbacks(runnable!!)
+       handler.post(runnable!!)
     }
 }
