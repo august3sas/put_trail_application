@@ -88,8 +88,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val intent = Intent(Intent.ACTION_SEND)
         intent.setType("text/plain")
         intent.putExtra(Intent.EXTRA_TEXT, text)
-        //val menuItem: MenuItem = findViewById(R.id.action_share)
-        //val shareActionProvider: ShareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
         shareActionProvider?.setShareIntent(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

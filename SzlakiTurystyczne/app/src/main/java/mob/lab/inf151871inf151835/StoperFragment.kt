@@ -21,19 +21,16 @@ class StoperFragment : Fragment(), View.OnClickListener{
     private var runnable: Runnable? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("StoperFragment", "onCreate called")
         if(savedInstanceState != null){
             seconds = savedInstanceState.getInt("seconds")
             running = savedInstanceState.getBoolean("running")
             wasRunning = savedInstanceState.getBoolean("wasRunning")
-            Log.d("Retrieved savedInstanceState","Running? $running was Running? $wasRunning")
             if(wasRunning || running){
                 running = true
 
             }
         }
         trailId = arguments?.getInt("trailId", 0) ?: 0
-        Log.d("StoperFragment", "Retrieved trailId: $trailId")
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,8 +53,6 @@ class StoperFragment : Fragment(), View.OnClickListener{
     override fun onPause(){
         super.onPause()
         wasRunning = running
-        running = false
-        Log.d("StoperFragment", "Trail ID retrieved: $trailId")
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         with(prefs.edit()) {
             putInt("Seconds_$trailId", seconds)
@@ -74,12 +69,10 @@ class StoperFragment : Fragment(), View.OnClickListener{
         val prefs = activity?.getSharedPreferences("StoperPrefs", Context.MODE_PRIVATE) ?: return
         seconds = prefs.getInt("Seconds_$trailId", 0)
         running = prefs.getBoolean("Running_$trailId", false)
-        view.let{runStoper(it!!)}
+        view.let{
+            runStoper(it!!)}
     }
     override fun onSaveInstanceState(savedInstanceState: Bundle){
-        Log.d("StoperFragment", "onSavedInstanceState called")
-        Log.d("StoperFragment", "Running? $running")
-        Log.d("StoperFragment", "Was Running? $wasRunning")
         super.onSaveInstanceState(savedInstanceState)
         running = wasRunning
         savedInstanceState.putInt("seconds", seconds)
