@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +50,9 @@ class TrailDetailFragment : Fragment() {
         val trailTime = TrailHelpers.timeToString(Trail.trails[trailId].getTime())
         val trailTimeView: TextView = view.findViewById(R.id.textTime)
         trailTimeView.text = "Czas trwania szlaku: $trailTime"
+
+        val trailStages: ListView = view.findViewById(R.id.trail_stages)
+        Trail.stagesToListViewParser(Trail.trails[trailId],trailStages)
 
         val stoperFragment = StoperFragment().apply {
             arguments = Bundle().apply {
@@ -94,6 +98,10 @@ class TrailDetailFragment : Fragment() {
             val time = view.findViewById(R.id.textTime) as TextView
             time.text = "Czas trwania szlaku: "+TrailHelpers.timeToString(trail.getTime())
             println(time.text)
+
+            val trailStages: ListView = view.findViewById(R.id.trail_stages)
+            Trail.stagesToListViewParser(Trail.trails[trailId.toInt()],trailStages)
+
         }
     }
 }

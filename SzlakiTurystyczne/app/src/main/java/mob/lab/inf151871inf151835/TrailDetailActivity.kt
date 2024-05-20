@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import android.view.View
+import android.widget.ListView
 import androidx.appcompat.widget.ShareActionProvider
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -55,6 +56,9 @@ class TrailDetailActivity : AppCompatActivity() {
         val trailTime = TrailHelpers.timeToString(Trail.trails[trailId].getTime())
         val trailTimeView: TextView = findViewById(R.id.textTime)
         trailTimeView.text = "Czas trwania szlaku: $trailTime"
+
+        val trailStages: ListView = findViewById(R.id.trail_stages)
+        Trail.stagesToListViewParser(Trail.trails[trailId],trailStages)
 
         val stoperFragment = StoperFragment().apply{
             arguments = Bundle().apply{

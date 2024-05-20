@@ -14,8 +14,9 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="350dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" >
 
+            android:theme="@style/Theme.SzlakiTurystyczne">
+            <!-- android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" > -->
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
                 android:layout_width="match_parent"
