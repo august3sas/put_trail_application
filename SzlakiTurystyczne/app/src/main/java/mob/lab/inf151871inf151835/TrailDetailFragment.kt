@@ -77,7 +77,6 @@ class TrailDetailFragment : Fragment() {
 
             val name = view.findViewById(R.id.trail_text) as TextView
             name.text = trail.getName()
-            //println(name.text)
 
             val trailImage: Int = Trail.trails[trailId.toInt()].getImageResourceId()
 

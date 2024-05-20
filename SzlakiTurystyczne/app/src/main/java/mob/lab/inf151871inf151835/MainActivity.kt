@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -26,13 +27,11 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, Tab1Fragment.TrailItemClickListener {
     private var keepSplash = true
     private val delay = 1200L
+    private var lastTrail = 0
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        lastTrail = savedInstanceState?.getInt("lastTrail") ?: 0
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         val drawer: DrawerLayout = findViewById(R.id.drawer_layout)
@@ -56,7 +55,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if(fragmentContainer != null){
             val fragment = TrailDetailFragment()
             val ft = supportFragmentManager.beginTransaction()
-            fragment.setTrail(0)
+            fragment.setTrail(lastTrail.toLong())
+            Log.d("Last trail", lastTrail.toString())
             ft.replace(R.id.right, fragment)
             ft.addToBackStack(null)
             ft.commit()
@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val fragment = TrailDetailFragment()
             val ft = supportFragmentManager.beginTransaction()
             fragment.setTrail(trailId.toLong())
+            lastTrail = trailId
             ft.replace(R.id.right, fragment)
             ft.addToBackStack(null)
             ft.commit()
@@ -156,10 +157,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         snackbar.show()
     }
     private fun setupSplashScreen(splashScreen: SplashScreen) {
-        // Replace this timer with your logic to load data on the splash screen.
         splashScreen.setKeepOnScreenCondition { keepSplash }
         Handler(Looper.getMainLooper()).postDelayed({
             keepSplash = false
         }, delay)
+    }
+    override fun onSaveInstanceState(outState: Bundle){
+        super.onSaveInstanceState(outState)
+        outState.putInt("lastTrail", lastTrail)
     }
 }

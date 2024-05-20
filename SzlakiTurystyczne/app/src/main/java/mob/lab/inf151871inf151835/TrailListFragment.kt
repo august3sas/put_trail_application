@@ -39,8 +39,6 @@ class TrailListFragment : ListFragment() {
     }
 
     override fun onListItemClick(listView: ListView, itemView: View, position: Int, id: Long){
-        //super.onListItemClick(listView, itemView, position, id)
-        //listener?.itemClicked(id)
         if (listener != null){
             listener!!.itemClicked(id)
         }

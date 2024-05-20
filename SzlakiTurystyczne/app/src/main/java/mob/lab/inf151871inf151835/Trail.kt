@@ -6,7 +6,7 @@ import android.widget.ListView
 class Trail(
     private var id: Int, //identyfikator szlaku
     private var name: String, //nazwa szlaku
-     private var stages: String, //etapy szlaki
+    private var stages: String, //etapy szlaku
     private var length: Double, //długość szlaku
     private var time: Double, //czas przejścia szlaku
     private var type: Int, //typ szlaku (0 - wszystkie, 1 - BG, 2 - Polica)

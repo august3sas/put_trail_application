@@ -5,10 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ActionActivity"
-    android:theme="@style/Theme.SzlakiTurystyczne">
+    android:theme="@style/Theme.SzlakiTurystyczne"
+    android:orientation="vertical">
     <include
         layout="@layout/toolbar_main"
         android:id="@+id/toolbar"
+        />
+    <TextView
+        android:id="@+id/action_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Information about the application"
         />
 
 

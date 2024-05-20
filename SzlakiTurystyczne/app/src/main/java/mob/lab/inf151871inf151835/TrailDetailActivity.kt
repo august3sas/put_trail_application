@@ -70,8 +70,6 @@ class TrailDetailActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.setType("text/plain")
         intent.putExtra(Intent.EXTRA_TEXT, text)
-        //val menuItem: MenuItem = findViewById(R.id.action_share)
-        //val shareActionProvider: ShareActionProvider = MenuItemCompat.getActionProvider(menuItem) as ShareActionProvider
         shareActionProvider.setShareIntent(intent)
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -85,7 +83,6 @@ class TrailDetailActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.getItemId()) {
             R.id.action_action -> {
-                // Code executed when the action_create_order item is clicked
                 val intent = Intent(this, ActionActivity::class.java)
                 startActivity(intent)
                 true
